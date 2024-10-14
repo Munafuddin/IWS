@@ -1,0 +1,285 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "students APIs",
+    "description": "APIs available for students",
+    "version": "1.0.0"
+  },
+  "host": "129.40.94.17:10010",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/web/services/students",
+  "tags": [
+    {
+      "name": "students APIs",
+      "description": "APIs available for students"
+    }
+  ],
+  "definitions": {
+    "SQLException": {
+      "type": "object",
+      "properties": {
+        "SQLState": {
+          "type": "string",
+          "maxLength": 5
+        },
+        "errorCode": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "SQLStateInfo": {
+      "type": "object",
+      "properties": {
+        "rowsAffectedCounts": {
+          "type": "string"
+        },
+        "SQLError": {
+          "$ref": "#/definitions/SQLException"
+        },
+        "SQLWarnings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SQLException"
+          }
+        }
+      }
+    },
+    "GETALLResult": {
+      "type": "object",
+      "properties": {
+        "SQLStateInfo": {
+          "$ref": "#/definitions/SQLStateInfo"
+        }
+      }
+    },
+    "GETBYIDResult": {
+      "type": "object",
+      "properties": {
+        "SQLStateInfo": {
+          "$ref": "#/definitions/SQLStateInfo"
+        }
+      }
+    },
+    "ADDInput": {
+      "type": "object",
+      "properties": {
+        "PARM00001": {
+          "type": "string"
+        },
+        "PARM00002": {
+          "type": "string"
+        },
+        "PARM00003": {
+          "type": "string"
+        },
+        "PARM00004": {
+          "type": "string"
+        }
+      }
+    },
+    "ADDResult": {
+      "type": "object",
+      "properties": {
+        "SQLStateInfo": {
+          "$ref": "#/definitions/SQLStateInfo"
+        }
+      }
+    },
+    "UPDATEInput": {
+      "type": "object",
+      "properties": {
+        "PARM00001": {
+          "type": "string"
+        },
+        "PARM00002": {
+          "type": "string"
+        },
+        "PARM00003": {
+          "type": "string"
+        },
+        "PARM00004": {
+          "type": "string"
+        }
+      }
+    },
+    "UPDATEResult": {
+      "type": "object",
+      "properties": {
+        "SQLStateInfo": {
+          "$ref": "#/definitions/SQLStateInfo"
+        }
+      }
+    },
+    "DELETEResult": {
+      "type": "object",
+      "properties": {
+        "SQLStateInfo": {
+          "$ref": "#/definitions/SQLStateInfo"
+        }
+      }
+    }
+  },
+  "paths": {
+    "/{id}": {
+      "delete": {
+        "tags": [
+          "students APIs"
+        ],
+        "operationId": "DELETE",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "500": {
+            "description": "Unsuccessful operation",
+            "schema": {
+              "$ref": "#/definitions/DELETEResult"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "students APIs"
+        ],
+        "operationId": "GETBYID",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "500": {
+            "description": "Unsuccessful operation",
+            "schema": {
+              "$ref": "#/definitions/GETBYIDResult"
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": [
+          "students APIs"
+        ],
+        "operationId": "GETALL",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "500": {
+            "description": "Unsuccessful operation",
+            "schema": {
+              "$ref": "#/definitions/GETALLResult"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "students APIs"
+        ],
+        "operationId": "ADD",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ADDInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "500": {
+            "description": "Unsuccessful operation",
+            "schema": {
+              "$ref": "#/definitions/ADDResult"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "students APIs"
+        ],
+        "operationId": "UPDATE",
+        "consumes": [
+          "*/*"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UPDATEInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "500": {
+            "description": "Unsuccessful operation",
+            "schema": {
+              "$ref": "#/definitions/UPDATEResult"
+            }
+          }
+        }
+      }
+    }
+  }
+}
